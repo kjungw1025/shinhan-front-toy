@@ -1,5 +1,7 @@
 const SERVER_URL = "http://127.0.0.1:8000"
 
+let curdetailid = 0;
+
 // 글 작성할 때 쿠키를 가져와야 하므로 getCookie 작성됨
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
@@ -64,6 +66,7 @@ const detailArticle = (id) => {
     modal.style.display = 'flex';
     modal.style.animation = 'fadein 2s';
     insertdetailArticle(id);
+    curdetailid = id;
 }
 //        <button onclick="deleteArticle(${id})">삭제하기</button>
 
@@ -139,7 +142,7 @@ async function insertdetailArticle (categoryid) {
 //-------------------------------------------------
 // 상세 내용 수정
 async function updateArticle(id, post) {
-    let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    let response = await fetch(`${SERVER_URL}/blog/article/${id}`, {
         method: 'PUT',
         body: JSON.stringify(post),
         headers: {
@@ -150,17 +153,17 @@ async function updateArticle(id, post) {
     console.log(data);
 }
 
-async function updatePost (id) {
+async function updatePost () {
     let post = document.getElementById('detailcontent').value;
 
-    let result = updateArticle(id, post);
+    let result = updateArticle(curdetailid, post);
     console.log(result.status);
 }
 
 //-------------------------------------------------
 // 상세 내용 삭제
-async function deletePost(id) {
-    let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+async function deletePost() {
+    let response = await fetch(`${SERVER_URL}/blog/article/${curdetailid}`, {
         method: 'DELETE',
     });
     let data = await response.json();

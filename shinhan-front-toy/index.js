@@ -142,11 +142,13 @@ async function insertdetailArticle (categoryid) {
 //-------------------------------------------------
 // 상세 내용 수정
 async function updateArticle(id, post) {
+    let token = getCookie('access_token');
     let response = await fetch(`${SERVER_URL}/blog/article/${id}`, {
         method: 'PUT',
         body: JSON.stringify(post),
         headers: {
-            'Content-type': 'application/json'
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
         }
     });
     let data = await response.json();
@@ -163,8 +165,12 @@ async function updatePost () {
 //-------------------------------------------------
 // 상세 내용 삭제
 async function deletePost() {
+    let token = getCookie('access_token');
     let response = await fetch(`${SERVER_URL}/blog/article/${curdetailid}`, {
         method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
     let data = await response.json();
     console.log(data);

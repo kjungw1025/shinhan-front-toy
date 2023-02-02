@@ -159,7 +159,7 @@ async function updatePost (id) {
 
 //-------------------------------------------------
 // 상세 내용 삭제
-async function deleteArticle(id) {
+async function deletePost(id) {
     let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
         method: 'DELETE',
     });

@@ -58,6 +58,7 @@ const closeCategory = (categoryid) => {
     setTimeout(() => modal.style.display = 'none', 1000);
 }
 
+// 작성한 글 세부내용 보게 하는 모달
 const detailArticle = (id) => {
     let modal = document.getElementById('modal');
     modal.style.display = 'flex';
@@ -66,6 +67,7 @@ const detailArticle = (id) => {
 }
 //        <button onclick="deleteArticle(${id})">삭제하기</button>
 
+// 모달 닫기
 const closeArticle = () => {
     let modal = document.getElementById('modal');
     modal.style.animation = 'fadeout 2s';
@@ -153,4 +155,14 @@ async function updatePost (id) {
 
     let result = updateArticle(id, post);
     console.log(result.status);
+}
+
+//-------------------------------------------------
+// 상세 내용 삭제
+async function deleteArticle(id) {
+    let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+        method: 'DELETE',
+    });
+    let data = await response.json();
+    console.log(data);
 }

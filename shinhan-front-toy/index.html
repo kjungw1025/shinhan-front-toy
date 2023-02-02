@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="modal">
+        <div id="item">
+            <h2 id="detailtitle"></h2>
+            <input type="text" id="detailcontent">
+            <button onclick="updatePost()">수정하기</button>
+            <button onclick="deleteArticle()">삭제하기</button>
+            <button onclick="closeArticle()">닫기</button>
+        </div>
+    </div>
+
+    <input type="text" id="Category" placeholder="카테고리 입력">
+    <button onclick="submitCategory()">카테고리 등록</button>
+    <hr>
+    <div id="categorylist">
+
+    </div>
+    <hr>
+    <form id="form">
+        <input type="text" name="title" placeholder="제목">
+        <input type="text" name="content" placeholder="내용">
+        <input type="file" name="image">
+        <input type="text" name="category" placeholder="카테고리">
+    </form>
+    <button onclick="submitArticle()">작성하기</button>
+</body>
+<script src="index.js"></script>
+</html>
